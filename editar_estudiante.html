@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AISANKA</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+    ></script>
+
+    <link
+        rel="stylesheet"
+        href="editar_estudiante.css"
+    >
+
+</head>
+
+<body>
+
+<div class="aplicacion">
+
+    <!-- =====================================================
+         MENÚ LATERAL
+         ===================================================== -->
+
+    <aside class="menu-lateral">
+
+        <div class="encabezado-menu">
+
+            <img
+                src="recursos/img/logo.png"
+                alt="Logo AISANKA"
+                class="logo-menu"
+            >
+
+            <div class="nombre-proyecto">
+
+                <strong>AISANKA</strong>
+
+                <span>Panel docente</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERFIL DEL MENÚ LATERAL
+             SE CONSERVA -->
+
+        <button
+            type="button"
+            class="perfil-docente"
+            id="botonPerfilDocente"
+        >
+
+            <div class="contenedor-foto">
+
+                <img
+                    src="recursos/img/perfil_docente.jfif"
+                    alt="Foto del docente"
+                    class="foto-docente"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="foto-predeterminada">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+            </div>
+
+            <div class="datos-docente">
+
+                <strong>Henrry Montes</strong>
+
+                <span>Docente</span>
+
+            </div>
+
+          
+        </button>
+
+
+        <!-- NAVEGACIÓN -->
+
+        <nav class="navegacion">
+
+            <a
+                href="inicio.html"
+                class="elemento-menu"
+            >
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Inicio</span>
+
+            </a>
+
+
+            <a
+                href="crear_estudiante.html"
+                class="elemento-menu"
+            >
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                <span>Crear estudiante</span>
+
+            </a>
+
+
+            <a
+                href="editar_estudiante.html"
+                class="elemento-menu activo"
+            >
+
+                <i class="fa-solid fa-user-pen"></i>
+
+                <span>Editar estudiantes</span>
+
+            </a>
+
+
+            <a
+                href="unidades.html"
+                class="elemento-menu"
+            >
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>Unidades</span>
+
+            </a>
+
+
+            <a
+                href="estadisticas.html"
+                class="elemento-menu"
+            >
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                <span>Estadísticas</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="separador-menu"></div>
+
+
+        <!-- CERRAR SESIÓN -->
+
+        <div class="cerrar-sesion">
+
+            <button
+                type="button"
+                class="elemento-menu boton-menu"
+                id="botonCerrarSesion"
+            >
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Cerrar sesión</span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+         ===================================================== -->
+
+    <main class="contenido-principal">
+
+        <header class="barra-superior">
+
+            <div>
+
+                <h1>Estudiantes</h1>
+
+                <p>
+                    Consulte y administre los estudiantes registrados en AISANKA.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             ESTUDIANTES
+             ================================================= -->
+
+        <section class="contenedor-estudiantes">
+
+            <div class="cabecera-estudiantes">
+
+                <div>
+
+                    <h2>
+                        Estudiantes registrados
+                    </h2>
+
+                    <p id="contadorEstudiantes">
+                        0 estudiantes registrados
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="crear_estudiante.html"
+                    class="boton-nuevo"
+                >
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    Nuevo estudiante
+
+                </a>
+
+            </div>
+
+
+            <!-- FILTROS -->
+
+            <div class="panel-filtros">
+
+                <div class="buscador">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="buscadorEstudiante"
+                        placeholder="Buscar por nombre, apellido o código MINED..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <select id="filtroGrado">
+
+                    <option value="">
+                        Todos los grados
+                    </option>
+
+                </select>
+
+
+                <select id="filtroSexo">
+
+                    <option value="">
+                        Todos los sexos
+                    </option>
+
+                    <option value="F">
+                        Femenino
+                    </option>
+
+                    <option value="M">
+                        Masculino
+                    </option>
+
+                </select>
+
+
+                <select id="filtroEstado">
+
+                    <option value="">
+                        Todos los estados
+                    </option>
+
+                    <option value="Activo">
+                        Activo
+                    </option>
+
+                    <option value="Inactivo">
+                        Inactivo
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- TABLA -->
+
+            <div class="tabla-contenedor">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Estudiante</th>
+                            <th>Código MINED</th>
+                            <th>Grado</th>
+                            <th>Sexo</th>
+                            <th>Estado</th>
+                            <th>Fecha de edición</th>
+                            <th>Acciones</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tablaEstudiantes"></tbody>
+
+                </table>
+
+
+                <div
+                    class="sin-estudiantes"
+                    id="sinEstudiantes"
+                >
+
+                    <div>
+
+                        <i class="fa-solid fa-users"></i>
+
+                    </div>
+
+                    <h3>
+                        No hay estudiantes
+                    </h3>
+
+                    <p>
+                        No se encontraron estudiantes con los criterios seleccionados.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL VER ESTUDIANTE
+     ========================================================= -->
+
+<div
+    class="modal-fondo"
+    id="modalVerEstudiante"
+>
+
+    <div class="modal-estudiante">
+
+        <button
+            type="button"
+            class="cerrar-modal"
+            id="cerrarModalVer"
+        >
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+        <div class="cabecera-modal-estudiante">
+
+            <div class="avatar-estudiante">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="verNombreEstudiante">
+                    Estudiante
+                </h2>
+
+                <span id="verCodigoMined">
+                    MINED-0000
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="estado-modal">
+
+            <span id="verEstado">
+                Activo
+            </span>
+
+        </div>
+
+
+        <div id="contenidoVerEstudiante"></div>
+
+
+        <div class="informacion-edicion">
+
+            <div>
+
+                <i class="fa-solid fa-calendar-plus"></i>
+
+                <span>
+                    Fecha de registro
+                </span>
+
+                <strong id="verFechaRegistro">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <span>
+                    Última edición
+                </span>
+
+                <strong id="verFechaEdicion">
+                    Nunca editado
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="acciones-modal-estudiante">
+
+            <button
+                type="button"
+                class="boton-secundario"
+                id="botonCerrarVer"
+            >
+                Cerrar
+            </button>
+
+
+            <button
+                type="button"
+                class="boton-pdf"
+                id="botonPDFVer"
+            >
+
+                <i class="fa-solid fa-file-pdf"></i>
+
+                Guardar PDF
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL EDITAR ESTUDIANTE
+     ========================================================= -->
+
+<div
+    class="modal-fondo"
+    id="modalEditarEstudiante"
+>
+
+    <div class="modal-estudiante">
+
+        <button
+            type="button"
+            class="cerrar-modal"
+            id="cerrarModalEditar"
+        >
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+        <div class="cabecera-modal-estudiante">
+
+            <div class="avatar-estudiante">
+
+                <i class="fa-solid fa-user-pen"></i>
+
+            </div>
+
+            <div>
+
+                <h2 id="editarNombreTitulo">
+                    Editar estudiante
+                </h2>
+
+                <span id="editarCodigoTitulo">
+                    MINED-0000
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <form id="formularioEdicion">
+
+            <input
+                type="hidden"
+                id="editarId"
+            >
+
+
+            <!-- =================================================
+                 INFORMACIÓN DEL ESTUDIANTE
+                 ================================================= -->
+
+            <div class="seccion-modal">
+
+                <h3>
+
+                    <i class="fa-solid fa-id-card"></i>
+
+                    Información del estudiante
+
+                </h3>
+
+
+                <div class="grid-modal">
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Código MINED
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarCodigo"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Primer nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarPrimerNombre"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Segundo nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarSegundoNombre"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Primer apellido
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarPrimerApellido"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Segundo apellido
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarSegundoApellido"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            id="editarCorreo"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Fecha de nacimiento
+                        </label>
+
+                        <input
+                            type="date"
+                            id="editarFechaNacimiento"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Edad
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarEdad"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Sexo
+                        </label>
+
+                        <select id="editarSexo" disabled>
+
+                            <option value="F">
+                                Femenino
+                            </option>
+
+                            <option value="M">
+                                Masculino
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Idioma del estudiante
+                        </label>
+
+                        <select
+                            id="editarIdioma"
+                            required
+                        >
+
+                            <option value="">
+                                Seleccione un idioma
+                            </option>
+
+                            <option value="Español">
+                                Español
+                            </option>
+
+                            <option value="Inglés">
+                                Inglés
+                            </option>
+
+                            <option value="Miskito">
+                                Miskito
+                            </option>
+
+                            <option value="Mayangna">
+                                Mayangna
+                            </option>
+
+                            <option value="Chino">
+                                Chino
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Acceso a internet
+                        </label>
+
+                        <select
+                            id="editarAccesoInternet"
+                            required
+                        >
+
+                            <option value="">
+                                Seleccione una opción
+                            </option>
+
+                            <option value="Sí">
+                                Sí
+                            </option>
+
+                            <option value="No">
+                                No
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Tipo de dispositivo
+                        </label>
+
+                        <select
+                            id="editarTipoDispositivo"
+                            required
+                        >
+
+                            <option value="">
+                                Seleccione un dispositivo
+                            </option>
+
+                            <option value="Celular">
+                                Celular
+                            </option>
+
+                            <option value="Tablet">
+                                Tablet
+                            </option>
+
+                            <option value="Computadora">
+                                Computadora
+                            </option>
+
+                            <option value="Ninguno">
+                                Ninguno
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Condición
+                        </label>
+
+                        <select
+                            id="editarCondicion"
+                            required
+                        >
+
+                            <option value="">
+                                Seleccione una condición
+                            </option>
+
+                            <option value="Autismo">
+                                Autismo
+                            </option>
+
+                            <option value="Dificultad visual">
+                                Dificultad visual
+                            </option>
+
+                            <option value="Dificultad auditiva">
+                                Dificultad auditiva
+                            </option>
+
+                            <option value="TDAH">
+                                TDAH
+                            </option>
+
+                            <option value="Neurotípico">
+                                Neurotípico
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Estado
+                        </label>
+
+                        <select id="editarEstado">
+
+                            <option value="Activo">
+                                Activo
+                            </option>
+
+                            <option value="Inactivo">
+                                Inactivo
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MATRÍCULA
+                 ================================================= -->
+
+            <div class="seccion-modal">
+
+                <h3>
+
+                    <i class="fa-solid fa-school"></i>
+
+                    Matrícula
+
+                </h3>
+
+
+                <div class="grid-modal">
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Escuela
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarEscuela"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Comunidad
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarComunidad"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Municipio
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarMunicipio"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Departamento
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarDepartamento"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Grado
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarGrado"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Aula / Sección
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarAulaSeccion"
+                            readonly
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Modalidad
+                        </label>
+
+                        <select
+                            id="editarModalidad"
+                            disabled
+                        >
+
+                            <option value="Diaria">
+                                Diaria
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Turno
+                        </label>
+
+                        <select
+                            id="editarTurno"
+                            disabled
+                        >
+
+                            <option value="Matutino">
+                                Matutino
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Año lectivo
+                        </label>
+
+                        <input
+                            type="number"
+                            id="editarAnio"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Docente responsable
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarDocente"
+                            readonly
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PADRE / MADRE / TUTOR
+                 ================================================= -->
+
+            <div class="seccion-modal">
+
+                <h3>
+
+                    <i class="fa-solid fa-people-roof"></i>
+
+                    Padre, madre o tutor
+
+                </h3>
+
+
+                <div class="grid-modal">
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Cédula
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarCedula"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Primer nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarPrimerNombrePadre"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Segundo nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarSegundoNombrePadre"
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Primer apellido
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarPrimerApellidoPadre"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Segundo apellido
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editarSegundoApellidoPadre"
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Teléfono
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="editarTelefono"
+                        >
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Idioma del responsable
+                        </label>
+
+                        <select
+                            id="editarIdiomaResponsable"
+                            required
+                        >
+
+                            <option value="">
+                                Seleccione un idioma
+                            </option>
+
+                            <option value="Español">
+                                Español
+                            </option>
+
+                            <option value="Inglés">
+                                Inglés
+                            </option>
+
+                            <option value="Miskito">
+                                Miskito
+                            </option>
+
+                            <option value="Mayangna">
+                                Mayangna
+                            </option>
+
+                            <option value="Chino">
+                                Chino
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo-modal">
+
+                        <label>
+                            Parentesco
+                        </label>
+
+                        <select
+                            id="editarParentesco"
+                            required
+                        >
+
+                            <option value="">
+                                Seleccione parentesco
+                            </option>
+
+                            <option value="Padre">
+                                Padre
+                            </option>
+
+                            <option value="Madre">
+                                Madre
+                            </option>
+
+                            <option value="Tutor">
+                                Tutor
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ACCIONES
+                 ================================================= -->
+
+            <div class="acciones-modal-estudiante">
+
+                <button
+                    type="button"
+                    class="boton-secundario"
+                    id="botonCancelarEdicion"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="boton-principal"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Guardar cambios
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL CAMBIOS GUARDADOS
+     ========================================================= -->
+
+<div
+    class="modal-fondo modal-mensaje"
+    id="modalCambiosGuardados"
+>
+
+    <div class="modal-confirmacion modal-exito">
+
+        <div class="icono-exito">
+
+            <i class="fa-solid fa-check"></i>
+
+        </div>
+
+
+        <h2>
+            Cambios guardados correctamente
+        </h2>
+
+
+        <p>
+            La información del estudiante fue actualizada exitosamente.
+        </p>
+
+
+        <div class="acciones-confirmacion">
+
+            <button
+                type="button"
+                class="boton-secundario"
+                id="cerrarCambiosGuardados"
+            >
+
+                Cerrar
+
+            </button>
+
+
+            <button
+                type="button"
+                class="boton-pdf"
+                id="botonPDFGuardado"
+            >
+
+                <i class="fa-solid fa-file-pdf"></i>
+
+                Guardar PDF
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL ELIMINAR
+     ========================================================= -->
+
+<div
+    class="modal-fondo"
+    id="modalEliminar"
+>
+
+    <div class="modal-confirmacion modal-eliminar">
+
+        <div class="icono-confirmacion">
+
+            <i class="fa-solid fa-trash"></i>
+
+        </div>
+
+
+        <h2>
+            Eliminar estudiante
+        </h2>
+
+
+        <p>
+
+            ¿Seguro que deseas eliminar a
+
+            <strong id="nombreEliminar"></strong>?
+
+        </p>
+
+
+        <span class="advertencia-eliminar">
+
+            Esta acción cambiará el estado del estudiante a inactivo.
+
+        </span>
+
+
+        <div class="acciones-confirmacion">
+
+            <button
+                type="button"
+                class="boton-secundario"
+                id="cancelarEliminar"
+            >
+
+                Cancelar
+
+            </button>
+
+
+            <button
+                type="button"
+                class="boton-eliminar-confirmar"
+                id="confirmarEliminar"
+            >
+
+                Eliminar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     PERFIL DEL MENÚ LATERAL
+     ========================================================= -->
+
+<div
+    class="modal-fondo"
+    id="modalPerfil"
+>
+
+    <div class="modal perfil-modal">
+
+        <button
+            type="button"
+            class="cerrar-modal"
+            id="cerrarPerfil"
+        >
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+        <div class="perfil-modal-foto">
+
+            <img
+                src="recursos/img/perfil_docente.jfif"
+                alt="Henrry Montes"
+            >
+
+        </div>
+
+
+        <h2>
+            Henrry Montes
+        </h2>
+
+        <span class="etiqueta-docente">
+            Docente responsable
+        </span>
+
+
+        <div class="informacion-perfil">
+
+            <div>
+
+                <i class="fa-solid fa-envelope"></i>
+
+                <span>
+
+                    <strong>
+                        Correo electrónico
+                    </strong>
+
+                    henrrymontes@gmail.com
+
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <i class="fa-solid fa-school"></i>
+
+                <span>
+
+                    <strong>
+                        Centro educativo
+                    </strong>
+
+                    CPACS
+
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <span>
+
+                    <strong>
+                        Ubicación
+                    </strong>
+
+                    Jinotega, Jinotega
+
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+                <span>
+
+                    <strong>
+                        Grado atendido
+                    </strong>
+
+                    6to
+
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <i class="fa-solid fa-language"></i>
+
+                <span>
+
+                    <strong>
+                        Idioma actualmente enseñado
+                    </strong>
+
+                    Chino
+
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>
+
+                    <strong>
+                        Estudiantes asignados
+                    </strong>
+
+                    <span id="cantidadEstudiantesPerfil">
+                        0
+                    </span>
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="sesion-activa">
+
+            <i class="fa-solid fa-circle"></i>
+
+            Sesión activa
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="editar_estudiante.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AISANKA - Panel de Inicio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="inicio.css">
+</head>
+<body>
+    <div class="aplicacion">
+        <aside class="menu-lateral">
+            <div class="encabezado-menu">
+                <img src="recursos/img/logo.png" alt="AISANKA" class="logo-menu">
+                <div class="nombre-proyecto">
+                    <strong>AISANKA</strong>
+                    <span>Panel docente</span>
+                </div>
+            </div>
+
+            <div class="perfil-docente">
+                <div class="contenedor-foto">
+                    <img src="assets/docente.jpg" alt="Docente" class="foto-docente" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="foto-predeterminada">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+                <div class="datos-docente">
+                    <strong>Henrry Montes</strong>
+                    <span>Docente</span>
+                </div>
+            </div>
+
+            <nav class="navegacion">
+                <a href="inicio.html" class="elemento-menu activo">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="crear_estudiante.html" class="elemento-menu">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>Crear estudiante</span>
+                </a>
+                <a href="editar_estudiante.html" class="elemento-menu">
+                    <i class="fa-solid fa-user-pen"></i>
+                    <span>Editar estudiantes</span>
+                </a>
+                <a href="unidades.html" class="elemento-menu">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Unidades</span>
+                </a>
+                <a href="estadisticas.html" class="elemento-menu">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Estadísticas</span>
+                </a>
+            </nav>
+
+            <div class="separador-menu"></div>
+
+            <div class="cerrar-sesion">
+                <button type="button" class="elemento-menu boton-menu" id="botonCerrarSesion">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Cerrar sesión</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="contenido-principal">
+            <header class="barra-superior">
+                <div>
+                    <h1>Inicio</h1>
+                    <p>Resumen general del progreso de tus estudiantes</p>
+                </div>
+                <div class="perfil-superior"></div>
+            </header>
+
+            <section class="tarjetas-resumen">
+                <article class="tarjeta-resumen">
+                    <div class="icono-tarjeta estudiantes">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div>
+                        <span>Estudiantes</span>
+                        <strong id="totalEstudiantes">5</strong>
+                    </div>
+                </article>
+
+                <article class="tarjeta-resumen">
+                    <div class="icono-tarjeta unidades">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div>
+                        <span>Unidades</span>
+                        <strong>4</strong>
+                    </div>
+                </article>
+
+                <article class="tarjeta-resumen">
+                    <div class="icono-tarjeta avance">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <span>Avance promedio</span>
+                        <strong id="avancePromedio">0%</strong>
+                    </div>
+                </article>
+
+                <article class="tarjeta-resumen">
+                    <div class="icono-tarjeta ejercicios">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </div>
+                    <div>
+                        <span>Ejercicios realizados</span>
+                        <strong id="ejerciciosRealizados">0</strong>
+                    </div>
+                </article>
+            </section>
+
+            <section class="seccion-estudiantes" id="estudiantes">
+                <div class="encabezado-seccion">
+                    <div>
+                        <h2>Estudiantes</h2>
+                        <p>Consulta el progreso de tus estudiantes</p>
+                    </div>
+
+                    <div class="buscador">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="buscadorEstudiantes"
+                            placeholder="Buscar estudiante..."
+                        >
+
+                        <button
+                            type="button"
+                            class="boton-limpiar"
+                            id="botonLimpiarBusqueda"
+                        >
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="contenedor-tabla">
+                    <table class="tabla-estudiantes">
+                        <thead>
+                            <tr>
+                                <th>Estudiante</th>
+                                <th>Grado</th>
+                                <th>Condición</th>
+                                <th>Idioma</th>
+                                <th>Avance</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tablaEstudiantes"></tbody>
+                    </table>
+
+                    <div class="sin-resultados" id="sinResultados">
+                        <i class="fa-solid fa-user-slash"></i>
+                        <strong>No se encontraron estudiantes</strong>
+                        <span>Intenta realizar otra búsqueda.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="seccion-graficas" id="graficas">
+                <div class="encabezado-seccion">
+                    <div>
+                        <h2>Progreso general</h2>
+                        <p>Visualización del progreso y los idiomas de tus estudiantes</p>
+                    </div>
+                </div>
+
+                <div class="contenedor-graficas">
+                    <article class="tarjeta-grafica grafica-avance">
+                        <div class="titulo-grafica">
+                            <div>
+                                <h3>Avance de estudiantes</h3>
+                                <span>Progreso general</span>
+                            </div>
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <div class="area-grafica">
+                            <canvas id="graficaAvance"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-grafica grafica-idiomas">
+                        <div class="titulo-grafica">
+                            <div>
+                                <h3>Idiomas enseñados</h3>
+                                <span>Estudiantes por idioma</span>
+                            </div>
+                            <i class="fa-solid fa-language"></i>
+                        </div>
+
+                        <div class="area-grafica">
+                            <canvas id="graficaIdiomas"></canvas>
+                        </div>
+                    </article>
+
+                    <canvas id="graficaDiscapacidad" style="display:none;"></canvas>
+                    <canvas id="graficaActividad" style="display:none;"></canvas>
+                    <canvas id="graficaRendimiento" style="display:none;"></canvas>
+                </div>
+            </section>
+        </main>
+
+
+
+
+
+
+
+
+        <aside
+            class="ventana-chat activo"
+            id="ventanaChat"
+            aria-label="Asistente IA AISANKA"
+        >
+            <div class="encabezado-chat">
+                <div class="informacion-chat">
+                    <div class="icono-chat">
+                        <i class="fa-solid fa-sparkles"></i>
+                    </div>
+
+                    <div>
+                        <strong>Asistente AISANKA</strong>
+                        <span>Asistente local</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mensajes-chat" id="mensajesChat">
+                <div class="mensaje mensaje-sistema">
+                    <div class="avatar-mensaje">
+                        <i class="fa-solid fa-sparkles"></i>
+                    </div>
+
+                    <div class="contenido-mensaje">
+                        <p>
+                            Hola, soy el asistente de AISANKA.
+                            ¿En qué puedo ayudarte?
+                        </p>
+                        <span>Ahora</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sugerencias-chat" id="sugerenciasChat">
+                <button
+                    type="button"
+                    data-pregunta="¿Cómo está el progreso de mis estudiantes?"
+                >
+                    Progreso
+                </button>
+
+                <button
+                    type="button"
+                    data-pregunta="¿Cuántos estudiantes tengo?"
+                >
+                    Estudiantes
+                </button>
+
+                <button
+                    type="button"
+                    data-pregunta="¿Qué puedo hacer en este panel?"
+                >
+                    Ayuda
+                </button>
+            </div>
+
+            <form
+                class="entrada-chat"
+                id="formularioChat"
+                autocomplete="off"
+            >
+                <input
+                    type="text"
+                    id="entradaChat"
+                    placeholder="Escribe tu pregunta..."
+                    maxlength="300"
+                    aria-label="Escribe tu pregunta"
+                >
+
+                <button
+                    type="submit"
+                    id="enviarChat"
+                    title="Enviar mensaje"
+                >
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </aside>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="inicio.js"></script>
+    <script src="chat.js"></script>
+</body>
+</html>

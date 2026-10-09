@@ -1,0 +1,630 @@
+<!-- Página principal de estadísticas de AISANKA con filtros, indicadores, gráficas y perfil docente. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel de estadísticas AISANKA">
+    <title>AISANKA | Estadísticas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="estadisticas.css">
+</head>
+
+<body>
+    <div class="aplicacion">
+
+        <aside class="menu-lateral">
+            <div class="decoracion-menu decoracion-uno"></div>
+            <div class="decoracion-menu decoracion-dos"></div>
+
+            <div class="encabezado-menu">
+                <img src="recursos/img/logo.png" alt="Logo AISANKA">
+                <div>
+                    <h1>AISANKA</h1>
+                    <span>Panel docente</span>
+                </div>
+            </div>
+
+            <button type="button" class="perfil-docente" id="perfilDocente" aria-label="Abrir perfil docente">
+                <div class="foto-docente">
+                    <img src="recursos/img/perfil_docente.jfif" alt="Perfil del docente" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span class="foto-predeterminada">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+                </div>
+
+                <div class="datos-docente">
+                    <strong data-docente-nombre>Henrry Montes</strong>
+                    <span>Docente responsable</span>
+                </div>
+
+                <i class="fa-solid fa-chevron-right flecha-perfil"></i>
+            </button>
+
+            <nav class="navegacion-menu" aria-label="Navegación principal">
+                <a href="inicio.html" class="item-menu">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+
+                <a href="crear_estudiante.html" class="item-menu">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>Crear estudiante</span>
+                </a>
+
+                <a href="editar_estudiante.html" class="item-menu">
+                    <i class="fa-solid fa-user-pen"></i>
+                    <span>Editar estudiantes</span>
+                </a>
+
+                <a href="unidades.html" class="item-menu">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Unidades</span>
+                </a>
+
+                <a href="estadisticas.html" class="item-menu activo">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Estadísticas</span>
+                </a>
+            </nav>
+
+            <div class="separador-menu"></div>
+
+            <button type="button" class="boton-cerrar-sesion" id="botonCerrarSesion">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Cerrar sesión</span>
+            </button>
+        </aside>
+
+        <main class="contenido-principal">
+
+            <header class="barra-superior">
+                <div class="titulo-superior">
+                    <div class="icono-titulo">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+
+                    <div>
+                        <h2>Estadísticas</h2>
+                        <p>Análisis del rendimiento y progreso de AISANKA</p>
+                    </div>
+                </div>
+
+                <div class="estado-panel">
+                    <span class="punto-activo"></span>
+                    <span>Panel docente</span>
+                </div>
+            </header>
+
+            <section class="contenido-estadisticas">
+
+                <div class="encabezado-estadisticas">
+                    <div>
+                        <span class="etiqueta-seccion">
+                            <i class="fa-solid fa-chart-line"></i>
+                            Rendimiento académico
+                        </span>
+
+                        <h1>Resumen general</h1>
+
+                        <p>
+                            Consulta el progreso, distribución de idiomas,
+                            estudiantes y principales indicadores de AISANKA.
+                        </p>
+
+                        <div class="aviso-datos" id="avisoDatos">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span id="textoAvisoDatos"></span>
+                        </div>
+                    </div>
+
+                    <button type="button" class="boton-pdf" id="botonDescargarPDF">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Descargar estadísticas</span>
+                    </button>
+                </div>
+
+                <section class="panel-filtros">
+                    <div class="encabezado-panel">
+                        <div>
+                            <span class="mini-etiqueta">CONFIGURACIÓN</span>
+                            <h3>Filtrar información</h3>
+                        </div>
+
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+
+                    <div class="filtros-estadisticas">
+                        <label class="campo-filtro">
+                            <span>Idioma</span>
+                            <div class="select-contenedor">
+                                <i class="fa-solid fa-language"></i>
+
+                                <select id="filtroIdioma">
+                                    <option value="todos">Todos los idiomas</option>
+                                    <option value="espanol">Español</option>
+                                    <option value="ingles">Inglés</option>
+                                    <option value="chino">Chino</option>
+                                    <option value="miskito">Miskito</option>
+                                    <option value="mayangna">Mayangna</option>
+                                </select>
+                            </div>
+                        </label>
+
+                        <label class="campo-filtro">
+                            <span>Grado</span>
+                            <div class="select-contenedor">
+                                <i class="fa-solid fa-graduation-cap"></i>
+
+                                <select id="filtroGrado">
+                                    <option value="todos">Todos los grados</option>
+                                    <option value="1">1er grado</option>
+                                    <option value="2">2do grado</option>
+                                    <option value="3">3er grado</option>
+                                    <option value="4">4to grado</option>
+                                    <option value="5">5to grado</option>
+                                    <option value="6">6to grado</option>
+                                </select>
+                            </div>
+                        </label>
+
+                        <label class="campo-filtro">
+                            <span>Periodo</span>
+                            <div class="select-contenedor">
+                                <i class="fa-solid fa-calendar-days"></i>
+
+                                <select id="filtroPeriodo">
+                                    <option value="actual">Registros actuales</option>
+                                    <option value="mes">Este mes</option>
+                                    <option value="trimestre">Este trimestre</option>
+                                    <option value="anio">Este año</option>
+                                </select>
+                            </div>
+                        </label>
+
+                        <button type="button" class="boton-aplicar" id="botonAplicarFiltros">
+                            <i class="fa-solid fa-filter"></i>
+                            Aplicar
+                        </button>
+
+                        <button type="button" class="boton-limpiar-filtros" id="botonLimpiarFiltros">
+                            <i class="fa-solid fa-rotate-left"></i>
+                            Limpiar
+                        </button>
+                    </div>
+                </section>
+
+                <div class="estado-sin-resultados" id="estadoSinResultados" hidden>
+                    <div class="icono-estado-vacio">
+                        <i class="fa-solid fa-chart-simple"></i>
+                    </div>
+
+                    <div>
+                        <strong>No hay datos para estos filtros</strong>
+                        <span>Prueba seleccionando otro idioma, grado o periodo.</span>
+                    </div>
+                </div>
+
+                <section class="tarjetas-resumen">
+
+                    <article class="tarjeta-resumen tarjeta-estudiantes">
+                        <div class="icono-tarjeta">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+
+                        <div class="contenido-tarjeta">
+                            <span>Total de estudiantes</span>
+                            <strong id="totalEstudiantes">0</strong>
+                            <small id="indicadorEstudiantes">Registros actuales</small>
+                        </div>
+
+                        <div class="decoracion-tarjeta"></div>
+                    </article>
+
+                    <article class="tarjeta-resumen tarjeta-mujeres">
+                        <div class="icono-tarjeta">
+                            <i class="fa-solid fa-venus"></i>
+                        </div>
+
+                        <div class="contenido-tarjeta">
+                            <span>Estudiantes mujeres</span>
+                            <strong id="totalMujeres">0</strong>
+                            <small id="porcentajeMujeres">0% del total</small>
+                        </div>
+
+                        <div class="decoracion-tarjeta"></div>
+                    </article>
+
+                    <article class="tarjeta-resumen tarjeta-varones">
+                        <div class="icono-tarjeta">
+                            <i class="fa-solid fa-mars"></i>
+                        </div>
+
+                        <div class="contenido-tarjeta">
+                            <span>Estudiantes varones</span>
+                            <strong id="totalVarones">0</strong>
+                            <small id="porcentajeVarones">0% del total</small>
+                        </div>
+
+                        <div class="decoracion-tarjeta"></div>
+                    </article>
+
+                    <article class="tarjeta-resumen tarjeta-progreso">
+                        <div class="icono-tarjeta">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <div class="contenido-tarjeta">
+                            <span>Progreso general</span>
+                            <strong id="progresoGeneral">0%</strong>
+                            <small>Promedio actual</small>
+                        </div>
+
+                        <div class="decoracion-tarjeta"></div>
+                    </article>
+
+                </section>
+
+                <section class="grid-graficas">
+
+                    <article class="tarjeta-grafica grafica-oscura">
+                        <div class="cabecera-grafica">
+                            <div>
+                                <span class="numero-grafica">01</span>
+                                <div>
+                                    <h3>Idiomas enseñados</h3>
+                                    <p>Distribución de estudiantes por idioma</p>
+                                </div>
+                            </div>
+
+                            <span class="icono-grafica">
+                                <i class="fa-solid fa-language"></i>
+                            </span>
+                        </div>
+
+                        <div class="contenedor-grafica contenedor-dona">
+                            <canvas id="graficaIdiomas"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-grafica">
+                        <div class="cabecera-grafica">
+                            <div>
+                                <span class="numero-grafica">02</span>
+                                <div>
+                                    <h3>Distribución por sexo</h3>
+                                    <p>Composición del grupo estudiantil</p>
+                                </div>
+                            </div>
+
+                            <span class="icono-grafica">
+                                <i class="fa-solid fa-venus-mars"></i>
+                            </span>
+                        </div>
+
+                        <div class="contenedor-grafica contenedor-dona">
+                            <canvas id="graficaSexo"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-grafica">
+                        <div class="cabecera-grafica">
+                            <div>
+                                <span class="numero-grafica">03</span>
+                                <div>
+                                    <h3>Estudiantes por grado</h3>
+                                    <p>Cantidad de estudiantes registrados</p>
+                                </div>
+                            </div>
+
+                            <span class="icono-grafica">
+                                <i class="fa-solid fa-school"></i>
+                            </span>
+                        </div>
+
+                        <div class="contenedor-grafica">
+                            <canvas id="graficaGrados"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-grafica grafica-grande">
+                        <div class="cabecera-grafica">
+                            <div>
+                                <span class="numero-grafica">04</span>
+                                <div>
+                                    <h3>Avance de estudiantes</h3>
+                                    <p>Porcentaje de progreso registrado para cada estudiante</p>
+                                </div>
+                            </div>
+
+                            <span class="icono-grafica">
+                                <i class="fa-solid fa-chart-column"></i>
+                            </span>
+                        </div>
+
+                        <div class="contenedor-grafica contenedor-avance-grafica">
+                            <canvas id="graficaAvance"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-grafica">
+                        <div class="cabecera-grafica">
+                            <div>
+                                <span class="numero-grafica">05</span>
+                                <div>
+                                    <h3>Progreso por unidad</h3>
+                                    <p id="subtituloUnidades">Datos disponibles según los registros de unidades</p>
+                                </div>
+                            </div>
+
+                            <span class="icono-grafica">
+                                <i class="fa-solid fa-book-open"></i>
+                            </span>
+                        </div>
+
+                        <div class="contenedor-grafica contenedor-grafica-relativa">
+                            <canvas id="graficaUnidades"></canvas>
+
+                            <div class="estado-grafica" id="estadoUnidades" hidden>
+                                <i class="fa-solid fa-book-open"></i>
+                                <strong>Sin datos de unidades</strong>
+                                <span>Registra avances por unidad para visualizar esta gráfica.</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-grafica">
+                        <div class="cabecera-grafica">
+                            <div>
+                                <span class="numero-grafica">06</span>
+                                <div>
+                                    <h3>Estado de estudiantes</h3>
+                                    <p>Estudiantes activos e inactivos</p>
+                                </div>
+                            </div>
+
+                            <span class="icono-grafica">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </span>
+                        </div>
+
+                        <div class="contenedor-grafica contenedor-dona">
+                            <canvas id="graficaEstado"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-grafica grafica-grande">
+                        <div class="cabecera-grafica">
+                            <div>
+                                <span class="numero-grafica">07</span>
+                                <div>
+                                    <h3>Distribución del progreso</h3>
+                                    <p>Estudiantes agrupados según su porcentaje de avance</p>
+                                </div>
+                            </div>
+
+                            <span class="icono-grafica">
+                                <i class="fa-solid fa-chart-area"></i>
+                            </span>
+                        </div>
+
+                        <div class="contenedor-grafica">
+                            <canvas id="graficaDistribucionProgreso"></canvas>
+                        </div>
+                    </article>
+
+                </section>
+
+                <section class="seccion-indicadores">
+                    <div class="titulo-seccion">
+                        <div>
+                            <span class="mini-etiqueta">INDICADORES</span>
+                            <h2>Rendimiento académico</h2>
+                        </div>
+
+                        <p>Resumen visual del desempeño registrado.</p>
+                    </div>
+
+                    <div class="grid-indicadores">
+
+                        <article class="indicador">
+                            <div class="cabecera-indicador">
+                                <span>Niveles</span>
+                                <strong id="indicadorNiveles">0%</strong>
+                            </div>
+
+                            <div class="barra-indicador">
+                                <span id="barraNiveles"></span>
+                            </div>
+
+                            <small>Progreso general de niveles</small>
+                        </article>
+
+                        <article class="indicador">
+                            <div class="cabecera-indicador">
+                                <span>Unidades</span>
+                                <strong id="indicadorUnidades">0%</strong>
+                            </div>
+
+                            <div class="barra-indicador">
+                                <span id="barraUnidades"></span>
+                            </div>
+
+                            <small>Avance promedio de unidades</small>
+                        </article>
+
+                        <article class="indicador">
+                            <div class="cabecera-indicador">
+                                <span>Ejercicios</span>
+                                <strong id="indicadorEjercicios">0%</strong>
+                            </div>
+
+                            <div class="barra-indicador">
+                                <span id="barraEjercicios"></span>
+                            </div>
+
+                            <small>Desempeño estimado</small>
+                        </article>
+
+                        <article class="indicador">
+                            <div class="cabecera-indicador">
+                                <span>Actividad</span>
+                                <strong id="indicadorActividad">0%</strong>
+                            </div>
+
+                            <div class="barra-indicador">
+                                <span id="barraActividad"></span>
+                            </div>
+
+                            <small>Participación registrada</small>
+                        </article>
+
+                    </div>
+                </section>
+
+                <section class="resumen-estadisticas">
+
+                    <article class="tarjeta-resumen-final">
+                        <div class="icono-resumen-final">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+
+                        <div>
+                            <span>Estudiantes registrados</span>
+                            <strong id="resumenNuevos">0</strong>
+                            <small>En los registros seleccionados</small>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-resumen-final">
+                        <div class="icono-resumen-final">
+                            <i class="fa-solid fa-language"></i>
+                        </div>
+
+                        <div>
+                            <span>Idioma con mayor presencia</span>
+                            <strong id="resumenMayorProgreso">Sin datos</strong>
+                            <small id="detalleMayorIdioma">Promedio según los registros actuales</small>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-resumen-final">
+                        <div class="icono-resumen-final">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+
+                        <div>
+                            <span>Unidad con mayor avance</span>
+                            <strong id="resumenUnidad">Sin datos</strong>
+                            <small id="detalleResumenUnidad">Requiere registros de progreso por unidad</small>
+                        </div>
+                    </article>
+
+                </section>
+
+            </section>
+        </main>
+    </div>
+
+    <div class="modal" id="modalPerfilDocente" aria-hidden="true">
+        <div class="modal-overlay" id="overlayPerfilDocente"></div>
+
+        <div class="modal-contenido modal-perfil">
+            <button type="button" class="boton-cerrar-modal" id="cerrarPerfilDocente" aria-label="Cerrar perfil">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="cabecera-modal-perfil">
+                <div class="foto-modal-perfil">
+                    <img src="recursos/img/perfil_docente.jfif" alt="Perfil del docente" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                    <span>
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+                </div>
+
+                <h2 data-docente-nombre>Henrry Montes</h2>
+                <p data-docente-rol>Docente responsable</p>
+            </div>
+
+            <div class="datos-modal-perfil">
+
+                <div class="dato-perfil">
+                    <div class="icono-dato">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+
+                    <div>
+                        <span>Correo electrónico</span>
+                        <strong data-docente-correo>henrrymontes@gmail.com</strong>
+                    </div>
+                </div>
+
+                <div class="dato-perfil">
+                    <div class="icono-dato">
+                        <i class="fa-solid fa-school"></i>
+                    </div>
+
+                    <div>
+                        <span>Centro educativo</span>
+                        <strong data-docente-centro>CPACS</strong>
+                    </div>
+                </div>
+
+                <div class="dato-perfil">
+                    <div class="icono-dato">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+
+                    <div>
+                        <span>Ubicación</span>
+                        <strong data-docente-ubicacion>Jinotega, Jinotega</strong>
+                    </div>
+                </div>
+
+                <div class="dato-perfil">
+                    <div class="icono-dato">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <div>
+                        <span>Grado atendido</span>
+                        <strong data-docente-grado>6to</strong>
+                    </div>
+                </div>
+
+                <div class="dato-perfil">
+                    <div class="icono-dato">
+                        <i class="fa-solid fa-language"></i>
+                    </div>
+
+                    <div>
+                        <span>Idiomas</span>
+                        <strong data-docente-idiomas>Chino, Miskito, Español, Mayangna, Inglés</strong>
+                    </div>
+                </div>
+
+                <div class="dato-perfil">
+                    <div class="icono-dato">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+                        <span>Estudiantes asignados</span>
+                        <strong id="perfilTotalEstudiantes">5</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="estado-perfil">
+                <span></span>
+                Sesión docente activa
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="estadisticas.js"></script>
+</body>
+</html>

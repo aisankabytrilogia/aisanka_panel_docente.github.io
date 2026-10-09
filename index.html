@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AISANKA</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+<main class="contenedor-login">
+    <section class="tarjeta-login">
+        <div class="contenedor-logo">
+            <img src="recursos/img/logo.png" alt="Logo de AISANKA" class="logo">
+        </div>
+
+        <div class="encabezado-login">
+            <h1>Panel docente</h1>
+        </div>
+
+        <form id="formularioLogin">
+            <div class="grupo-campo">
+                <label for="correo">Correo electrónico</label>
+                <div class="contenedor-campo">
+                    <i class="fa-solid fa-envelope icono-campo"></i>
+                    <input type="email" id="correo" placeholder="Ingrese su correo" autocomplete="username" required>
+                </div>
+            </div>
+
+            <div class="grupo-campo">
+                <label for="contrasena">Contraseña</label>
+                <div class="contenedor-campo">
+                    <i class="fa-solid fa-lock icono-campo"></i>
+                    <input type="password" id="contrasena" placeholder="Ingrese su contraseña" autocomplete="current-password" required>
+                    <button type="button" class="boton-mostrar" id="botonMostrar" aria-label="Mostrar contraseña">
+                        <i class="fa-solid fa-eye" id="iconoOjo"></i>
+                    </button>
+                </div>
+            </div>
+
+
+            <button type="submit" class="boton-iniciar">
+                Iniciar sesión
+            </button>
+        </form>
+
+
+        <div class="pie-login">
+            <strong>AISANKA</strong>
+            <span>El idioma que une a Nicaragua</span>
+        </div>
+    </section>
+</main>
+
+
+<div class="fondo-modal" id="ventanaError">
+    <div class="modal-error">
+        <button type="button" class="boton-cerrar" id="botonCerrar">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="icono-error">
+            <i class="fa-solid fa-circle-exclamation"></i>
+        </div>
+
+        <h2 id="tituloError">Error</h2>
+        <p id="mensajeError">
+            Los datos ingresados no son correctos. </p>
+
+        <button type="button" class="boton-entendido" id="botonEntendido">
+            Entendido
+        </button>
+    </div>
+</div>
+
+<script src="index.js"></script>
+</body>
+</html>

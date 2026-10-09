@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AISANKA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="crear_estudiante.css">
+</head>
+
+<body>
+
+<div class="aplicacion">
+
+```
+<aside class="menu-lateral">
+
+    <div class="encabezado-menu">
+        <img src="recursos/img/logo.png" alt="Logo AISANKA" class="logo-menu">
+
+        <div class="nombre-proyecto">
+            <strong>AISANKA</strong>
+            <span>Panel docente</span>
+        </div>
+    </div>
+
+    <button type="button" class="perfil-docente" id="botonPerfilDocente">
+
+        <div class="contenedor-foto">
+            <img
+                src="recursos/img/perfil_docente.jfif"
+                alt="Foto del docente"
+                class="foto-docente"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+
+            <div class="foto-predeterminada">
+                <i class="fa-solid fa-user"></i>
+            </div>
+        </div>
+
+        <div class="datos-docente">
+            <strong>Henrry Montes</strong>
+            <span>Docente</span>
+        </div>
+
+    </button>
+
+    <nav class="navegacion">
+
+        <a href="inicio.html" class="elemento-menu">
+            <i class="fa-solid fa-house"></i>
+            <span>Inicio</span>
+        </a>
+
+        <a href="crear_estudiante.html" class="elemento-menu activo">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Crear estudiante</span>
+        </a>
+
+        <a href="editar_estudiante.html" class="elemento-menu">
+            <i class="fa-solid fa-user-pen"></i>
+            <span>Editar estudiantes</span>
+        </a>
+
+        <a href="unidades.html" class="elemento-menu">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Unidades</span>
+        </a>
+
+        <a href="estadisticas.html" class="elemento-menu">
+            <i class="fa-solid fa-chart-column"></i>
+            <span>Estadísticas</span>
+        </a>
+
+    </nav>
+
+    <div class="separador-menu"></div>
+
+ 
+
+    <div class="cerrar-sesion">
+
+        <button type="button" class="elemento-menu boton-menu" id="botonCerrarSesion">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Cerrar sesión</span>
+        </button>
+
+    </div>
+
+</aside>
+
+
+<main class="contenido-principal">
+
+    <header class="barra-superior">
+
+        <div>
+            <h1>Crear estudiante</h1>
+            <p>Registre un nuevo estudiante en AISANKA</p>
+        </div>
+
+
+
+    </header>
+
+
+    <section class="formulario-contenedor">
+
+        <form id="formularioEstudiante" novalidate>
+
+            <!-- =====================================================
+                 INFORMACIÓN PERSONAL
+                 ===================================================== -->
+
+            <div class="seccion-formulario">
+
+                <div class="titulo-seccion">
+
+                    <div class="icono-seccion">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+
+                    <div>
+                        <h2>Información personal</h2>
+                        <p>Ingrese el código MINED para cargar los datos oficiales.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="grupo-formulario codigo-mined">
+
+                    <label for="codigoMined">
+                        Código MINED <span>*</span>
+                    </label>
+
+                    <div class="campo-icono">
+
+                        <i class="fa-solid fa-barcode"></i>
+
+                        <input
+                            type="text"
+                            id="codigoMined"
+                            placeholder="Ejemplo: MINED-0006"
+                            autocomplete="off"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="buscarMined"
+                            title="Consultar código MINED"
+                        >
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+
+                    </div>
+
+                    <small>
+                        El código MINED consulta los datos registrados.
+                    </small>
+
+                </div>
+
+
+                <div class="grid-formulario">
+
+                    <div class="grupo-formulario">
+                        <label for="primerNombre">
+                            Primer nombre <span>*</span>
+                        </label>
+                        <input type="text" id="primerNombre" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="segundoNombre">
+                            Segundo nombre
+                        </label>
+                        <input type="text" id="segundoNombre" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="primerApellido">
+                            Primer apellido <span>*</span>
+                        </label>
+                        <input type="text" id="primerApellido" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="segundoApellido">
+                            Segundo apellido
+                        </label>
+                        <input type="text" id="segundoApellido" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="fechaNacimiento">
+                            Fecha de nacimiento <span>*</span>
+                        </label>
+                        <input type="date" id="fechaNacimiento" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="edad">
+                            Edad
+                        </label>
+                        <input type="text" id="edad" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="sexo">
+                            Sexo <span>*</span>
+                        </label>
+                        <input type="text" id="sexo" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="correo">
+                            Correo electrónico <span>*</span>
+                        </label>
+                        <input
+                            type="email"
+                            id="correo"
+                            placeholder="correo@ejemplo.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="estado">
+                            Estado <span>*</span>
+                        </label>
+
+                        <select id="estado" required>
+                            <option value="">Seleccione</option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="fechaRegistro">
+                            Fecha de registro
+                        </label>
+                        <input type="date" id="fechaRegistro" readonly>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 DATOS EDUCATIVOS
+                 ===================================================== -->
+
+            <div class="seccion-formulario">
+
+                <div class="titulo-seccion">
+
+                    <div class="icono-seccion">
+                        <i class="fa-solid fa-school"></i>
+                    </div>
+
+                    <div>
+                        <h2>Procedencia y matrícula</h2>
+                        <p>Información académica y de matrícula del estudiante.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="grid-formulario">
+
+                    <div class="grupo-formulario">
+                        <label for="escuela">
+                            Escuela <span>*</span>
+                        </label>
+                        <input type="text" id="escuela" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="comunidad">
+                            Comunidad <span>*</span>
+                        </label>
+                        <input type="text" id="comunidad" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="municipio">
+                            Municipio <span>*</span>
+                        </label>
+                        <input type="text" id="municipio" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="departamento">
+                            Departamento <span>*</span>
+                        </label>
+                        <input type="text" id="departamento" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="grado">
+                            Grado <span>*</span>
+                        </label>
+                        <input type="text" id="grado" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="aula">
+                            Aula / Sección <span>*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="aula"
+                            placeholder="Aula o sección"
+                            required
+                        >
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="seccion">
+                            Sección
+                        </label>
+                        <input
+                            type="text"
+                            id="seccion"
+                            readonly
+                        >
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="modalidad">
+                            Modalidad <span>*</span>
+                        </label>
+
+                        <select id="modalidad" required>
+                            <option value="Diaria">Diaria</option>
+                        </select>
+
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="turno">
+                            Turno <span>*</span>
+                        </label>
+
+                        <select id="turno" required>
+                            <option value="Matutino">Matutino</option>
+                        </select>
+
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="anioLectivo">
+                            Año lectivo <span>*</span>
+                        </label>
+                        <input type="text" id="anioLectivo" value="2026" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="docente">
+                            Docente responsable <span>*</span>
+                        </label>
+                        <input type="text" id="docente" value="Henrry Montes" readonly>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="estadoMatricula">
+                            Estado de matrícula
+                        </label>
+                        <input type="text" id="estadoMatricula" value="Activa" readonly>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 INFORMACIÓN TECNOLÓGICA
+                 ===================================================== -->
+
+            <div class="seccion-formulario">
+
+                <div class="titulo-seccion">
+
+                    <div class="icono-seccion">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+
+                    <div>
+                        <h2>Acceso tecnológico</h2>
+                        <p>Información necesaria para el funcionamiento de AISANKA.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="grid-formulario">
+
+                    <div class="grupo-formulario">
+
+                        <label for="idioma">
+                            Idioma que aprenderá <span>*</span>
+                        </label>
+
+                        <select id="idioma" required>
+
+                            <option value="">
+                                Seleccione
+                            </option>
+
+                            <option value="Español">
+                                Español
+                            </option>
+
+                            <option value="Inglés">
+                                Inglés
+                            </option>
+
+                            <option value="Miskito">
+                                Miskito
+                            </option>
+
+                            <option value="Mayangna">
+                                Mayangna
+                            </option>
+
+                            <option value="Chino">
+                                Chino
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="grupo-formulario">
+
+                        <label for="accesoInternet">
+                            Acceso a internet <span>*</span>
+                        </label>
+
+                        <select id="accesoInternet" required>
+
+                            <option value="">
+                                Seleccione
+                            </option>
+
+                            <option value="Si">
+                                Sí
+                            </option>
+
+                            <option value="No">
+                                No
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="grupo-formulario">
+
+                        <label for="tipoDispositivo">
+                            Tipo de dispositivo <span>*</span>
+                        </label>
+
+                        <select id="tipoDispositivo" required>
+
+                            <option value="">
+                                Seleccione
+                            </option>
+
+                            <option value="Celular">
+                                Celular
+                            </option>
+
+                            <option value="Tablet">
+                                Tablet
+                            </option>
+
+                            <option value="Computadora">
+                                Computadora
+                            </option>
+
+                            <option value="Otro">
+                                Otro
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 CONDICIÓN DEL ESTUDIANTE
+                 ===================================================== -->
+
+            <div class="seccion-formulario">
+
+                <div class="titulo-seccion">
+
+                    <div class="icono-seccion">
+                        <i class="fa-solid fa-universal-access"></i>
+                    </div>
+
+                    <div>
+                        <h2>Condición del estudiante</h2>
+                        <p>Seleccione la condición correspondiente para adaptar el aprendizaje.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="grid-formulario">
+
+                    <div class="grupo-formulario campo-completo">
+
+                        <label for="condicion">
+                            Condición <span>*</span>
+                        </label>
+
+                        <select id="condicion" required>
+
+                            <option value="">
+                                Seleccione una condición
+                            </option>
+
+                            <option value="Neurotípico">
+                                Neurotípico
+                            </option>
+
+                            <option value="Autismo">
+                                Autismo
+                            </option>
+
+                            <option value="Dificultad visual">
+                                Dificultad visual
+                            </option>
+
+                            <option value="Dificultad auditiva">
+                                Dificultad auditiva
+                            </option>
+
+                            <option value="TDAH">
+                                TDAH
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 PADRE, MADRE O TUTOR
+                 ===================================================== -->
+
+            <div class="seccion-formulario">
+
+                <div class="titulo-seccion">
+
+                    <div class="icono-seccion">
+                        <i class="fa-solid fa-people-roof"></i>
+                    </div>
+
+                    <div>
+                        <h2>Padre, madre o tutor</h2>
+                        <p>Información del responsable del estudiante.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="grid-formulario">
+
+                    <div class="grupo-formulario">
+                        <label for="primerNombreResponsable">
+                            Primer nombre <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="primerNombreResponsable"
+                            placeholder="Primer nombre"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="grupo-formulario">
+                        <label for="segundoNombreResponsable">
+                            Segundo nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            id="segundoNombreResponsable"
+                            placeholder="Segundo nombre"
+                        >
+                    </div>
+
+
+                    <div class="grupo-formulario">
+                        <label for="primerApellidoResponsable">
+                            Primer apellido <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="primerApellidoResponsable"
+                            placeholder="Primer apellido"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="grupo-formulario">
+                        <label for="segundoApellidoResponsable">
+                            Segundo apellido
+                        </label>
+
+                        <input
+                            type="text"
+                            id="segundoApellidoResponsable"
+                            placeholder="Segundo apellido"
+                        >
+                    </div>
+
+
+                    <div class="grupo-formulario">
+                        <label for="cedula">
+                            Cédula <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="cedula"
+                            placeholder="000-000000-0000A"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="grupo-formulario">
+                        <label for="telefono">
+                            Teléfono
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="telefono"
+                            placeholder="8888-0000"
+                        >
+                    </div>
+
+
+                    <div class="grupo-formulario">
+                        <label for="parentesco">
+                            Parentesco <span>*</span>
+                        </label>
+
+                        <select id="parentesco" required>
+
+                            <option value="">
+                                Seleccione
+                            </option>
+
+                            <option value="Padre">
+                                Padre
+                            </option>
+
+                            <option value="Madre">
+                                Madre
+                            </option>
+
+                            <option value="Tutor">
+                                Tutor
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="grupo-formulario">
+                        <label for="idiomaResponsable">
+                            Idioma <span>*</span>
+                        </label>
+
+                        <select id="idiomaResponsable" required>
+
+                            <option value="">
+                                Seleccione
+                            </option>
+
+                            <option value="Español">
+                                Español
+                            </option>
+
+                            <option value="Miskito">
+                                Miskito
+                            </option>
+
+                            <option value="Mayangna">
+                                Mayangna
+                            </option>
+
+                            <option value="Inglés">
+                                Inglés
+                            </option>
+
+                            <option value="Chino">
+                                Chino
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="acciones-formulario">
+
+                <button
+                    type="submit"
+                    class="boton-principal"
+                >
+                    <i class="fa-solid fa-user-plus"></i>
+                    Registrar estudiante
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+```
+
+</div>
+
+<!-- =============================================================
+     MODAL ALERTA
+     ============================================================= -->
+
+<div class="modal-fondo" id="modalAlerta">
+
+```
+<div class="modal alerta-modal">
+
+    <div class="icono-alerta" id="iconoAlerta">
+        <i class="fa-solid fa-circle-exclamation"></i>
+    </div>
+
+    <h2 id="tituloAlerta">
+        Aviso
+    </h2>
+
+    <p id="mensajeAlerta">
+        Mensaje
+    </p>
+
+    <button
+        type="button"
+        class="boton-modal"
+        id="cerrarAlerta"
+    >
+        Cerrar
+    </button>
+
+</div>
+```
+
+</div>
+
+<!-- =============================================================
+     MODAL ÉXITO
+     ============================================================= -->
+
+<div class="modal-fondo" id="modalExito">
+
+```
+<div class="modal exito-modal">
+
+    <div class="icono-exito">
+        <i class="fa-solid fa-circle-check"></i>
+    </div>
+
+    <h2>
+        Estudiante registrado
+    </h2>
+
+    <p id="mensajeExito">
+        El estudiante fue registrado correctamente.
+    </p>
+
+    <div class="acciones-modal">
+
+        <button
+            type="button"
+            class="boton-secundario"
+            id="cerrarExito"
+        >
+            Cerrar
+        </button>
+
+        <button
+            type="button"
+            class="boton-principal"
+            id="descargarPdf"
+        >
+            <i class="fa-solid fa-file-pdf"></i>
+            Descargar PDF
+        </button>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- =============================================================
+     MODAL PERFIL
+     ============================================================= -->
+
+<div class="modal-fondo" id="modalPerfil">
+
+```
+<div class="modal perfil-modal">
+
+    <button
+        type="button"
+        class="cerrar-modal"
+        id="cerrarPerfil"
+    >
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="perfil-modal-foto">
+
+        <img
+            src="recursos/img/perfil_docente.jfif"
+            alt="Henrry Montes"
+        >
+
+    </div>
+
+    <h2>
+        Henrry Montes
+    </h2>
+
+    <span class="etiqueta-docente">
+        Docente responsable
+    </span>
+
+    <div class="informacion-perfil">
+
+        <div>
+            <i class="fa-solid fa-envelope"></i>
+
+            <span>
+                <strong>Correo electrónico</strong>
+                henrrymontes@gmail.com
+            </span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-school"></i>
+
+            <span>
+                <strong>Centro educativo</strong>
+                CPACS
+            </span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-location-dot"></i>
+
+            <span>
+                <strong>Ubicación</strong>
+                Jinotega, Jinotega
+            </span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-graduation-cap"></i>
+
+            <span>
+                <strong>Grado atendido</strong>
+                6to
+            </span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-language"></i>
+
+            <span>
+                <strong>Idioma actualmente enseñado</strong>
+                Chino
+            </span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-users"></i>
+
+            <span>
+                <strong>Estudiantes asignados</strong>
+                <span id="cantidadEstudiantesPerfil">0</span>
+            </span>
+        </div>
+
+    </div>
+
+    <div class="sesion-activa">
+        <i class="fa-solid fa-circle"></i>
+        Sesión activa
+    </div>
+
+</div>
+
+
+</div>
+
+<!-- =============================================================
+     CHAT
+     ============================================================= -->
+
+<div class="ventana-chat" id="ventanaChat">
+
+```
+<div class="encabezado-chat">
+
+    <div>
+        <strong>Chat</strong>
+        <span>Comunicación docente</span>
+    </div>
+
+    <button type="button" id="cerrarChat">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
+</div>
+
+<div class="contenido-chat">
+
+    <div class="chat-vacio">
+
+        <i class="fa-solid fa-comments"></i>
+
+        <strong>Chat AISANKA</strong>
+
+        <p>
+            La comunicación entre docentes estará disponible próximamente.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="entrada-chat">
+
+    <input
+        type="text"
+        placeholder="Escriba un mensaje..."
+        disabled
+    >
+
+    <button type="button" disabled>
+        <i class="fa-solid fa-paper-plane"></i>
+    </button>
+
+</div>
+```
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="crear_estudiante.js"></script>
+
+</body>
+</html>

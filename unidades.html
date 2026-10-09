@@ -1,0 +1,314 @@
+<!-- Estructura principal de la página de gestión de unidades de AISANKA, con navegación lateral, selector de idiomas, resumen académico, unidades y reglas de habilitación. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AISANKA | Unidades</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="unidades.css">
+</head>
+
+<body>
+<div class="aplicacion">
+
+    <aside class="menu-lateral">
+        <div class="encabezado-menu">
+            <img src="recursos/img/logo.png" alt="Logo AISANKA" class="logo-menu">
+
+            <div class="nombre-proyecto">
+                <strong>AISANKA</strong>
+                <span>Panel docente</span>
+            </div>
+        </div>
+
+        <button type="button" class="perfil-docente" id="botonPerfil">
+            <div class="contenedor-foto">
+                <img
+                    src="recursos/img/perfil_docente.jfif"
+                    alt="Foto del docente"
+                    class="foto-docente"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="foto-predeterminada">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </div>
+
+            <div class="datos-docente">
+                <strong id="nombreDocenteMenu">Henrry Montes</strong>
+                <span>Docente</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-right flecha-perfil"></i>
+        </button>
+
+        <nav class="navegacion">
+            <a href="inicio.html" class="elemento-menu">
+                <i class="fa-solid fa-house"></i>
+                <span>Inicio</span>
+            </a>
+
+            <a href="crear_estudiante.html" class="elemento-menu">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Crear estudiante</span>
+            </a>
+
+            <a href="editar_estudiante.html" class="elemento-menu">
+                <i class="fa-solid fa-user-pen"></i>
+                <span>Editar estudiantes</span>
+            </a>
+
+            <a href="unidades.html" class="elemento-menu activo">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Unidades</span>
+            </a>
+
+            <a href="estadisticas.html" class="elemento-menu">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Estadísticas</span>
+            </a>
+        </nav>
+
+        <div class="separador-menu"></div>
+
+        <div class="cerrar-sesion">
+            <button type="button" class="elemento-menu boton-menu" id="botonCerrarSesion">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Cerrar sesión</span>
+            </button>
+        </div>
+    </aside>
+
+    <main class="contenido-principal">
+
+        <header class="barra-superior">
+            <div class="titulo-superior">
+                <div class="icono-titulo">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div>
+                    <span class="ruta">GESTIÓN ACADÉMICA</span>
+                    <h1>Unidades de aprendizaje</h1>
+                    <p>Organiza y supervisa el contenido educativo de tus estudiantes.</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="contenido-unidades">
+
+            <section class="hero-unidades">
+                <div class="hero-texto">
+                    <span class="etiqueta-seccion">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        CONTENIDO ACADÉMICO
+                    </span>
+
+                    <h2>Aprendizaje organizado por idiomas</h2>
+
+                    <p>
+                        Selecciona un idioma para consultar sus unidades,
+                        revisar el avance y controlar la habilitación de los niveles.
+                    </p>
+                </div>
+
+                <div class="resumen-hero">
+                    <div class="circulo-progreso">
+                        <span id="avanceGeneral">0%</span>
+                    </div>
+
+                    <div class="resumen-hero-texto">
+                        <strong>Avance general</strong>
+                        <span>Progreso del idioma seleccionado</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="selector-idiomas">
+                <div class="encabezado-bloque">
+                    <div>
+                        <span class="mini-etiqueta">IDIOMAS</span>
+                        <h3>Selecciona un idioma</h3>
+                    </div>
+
+                    <span class="contador-idiomas">
+                        <i class="fa-solid fa-earth-americas"></i>
+                        5 idiomas disponibles
+                    </span>
+                </div>
+
+                <div class="idiomas">
+                    <button type="button" class="boton-idioma activo" data-idioma="espanol">
+                        <span class="bandera">ES</span>
+                        <span class="nombre-boton">Español</span>
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+
+                    <button type="button" class="boton-idioma" data-idioma="ingles">
+                        <span class="bandera">EN</span>
+                        <span class="nombre-boton">Inglés</span>
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+
+                    <button type="button" class="boton-idioma" data-idioma="chino">
+                        <span class="bandera">中</span>
+                        <span class="nombre-boton">Chino</span>
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+
+                    <button type="button" class="boton-idioma" data-idioma="miskito">
+                        <span class="bandera">MI</span>
+                        <span class="nombre-boton">Miskito</span>
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+
+                    <button type="button" class="boton-idioma" data-idioma="mayangna">
+                        <span class="bandera">MA</span>
+                        <span class="nombre-boton">Mayangna</span>
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+                </div>
+            </section>
+
+            <section class="informacion-idioma">
+                <div class="idioma-identidad">
+                    <div class="icono-idioma">
+                        <i class="fa-solid fa-language"></i>
+                    </div>
+
+                    <div>
+                        <span class="mini-etiqueta">IDIOMA SELECCIONADO</span>
+                        <h2 id="nombreIdioma">Español</h2>
+                        <p id="descripcionIdioma">
+                            Ruta de aprendizaje y contenidos principales.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="estadisticas-idioma">
+                    <div class="dato-idioma">
+                        <strong id="totalUnidades">0</strong>
+                        <span>Unidades</span>
+                    </div>
+
+                    <div class="linea-dato"></div>
+
+                    <div class="dato-idioma">
+                        <strong id="totalNiveles">0</strong>
+                        <span>Niveles</span>
+                    </div>
+
+                    <div class="linea-dato"></div>
+
+                    <div class="dato-idioma">
+                        <strong id="avanceIdioma">0%</strong>
+                        <span>Avance</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="zona-unidades">
+                <div class="encabezado-zona">
+                    <div>
+                        <span class="mini-etiqueta">RUTA DE APRENDIZAJE</span>
+                        <h2>Unidades disponibles</h2>
+                    </div>
+
+                    <div class="leyenda">
+                        <span>
+                            <i class="fa-solid fa-circle-check"></i>
+                            Habilitada
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-lock"></i>
+                            Bloqueada
+                        </span>
+                    </div>
+                </div>
+
+                <div class="contenedor-unidades" id="contenedorUnidades"></div>
+            </section>
+
+            <section class="panel-reglas">
+                <div class="encabezado-reglas">
+                    <div class="icono-reglas">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <div>
+                        <span class="mini-etiqueta">CONTROL ACADÉMICO</span>
+                        <h2>Reglas de habilitación</h2>
+                        <p>
+                            AISANKA utiliza estas condiciones para mantener
+                            una ruta de aprendizaje progresiva.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reglas-grid">
+                    <article class="regla">
+                        <div class="numero-regla">
+                            <span>70</span>
+                            <small>%</small>
+                        </div>
+
+                        <div class="contenido-regla">
+                            <h3>Habilitación de niveles</h3>
+                            <p>
+                                El nivel siguiente puede habilitarse cuando
+                                más del 70 % de los estudiantes complete el nivel anterior.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="regla">
+                        <div class="numero-regla">
+                            <span>90</span>
+                            <small>%</small>
+                        </div>
+
+                        <div class="contenido-regla">
+                            <h3>Habilitación de unidades</h3>
+                            <p>
+                                Una nueva unidad puede habilitarse cuando
+                                más del 90 % de los estudiantes complete la unidad anterior.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+        </section>
+    </main>
+</div>
+
+<div class="modal-fondo" id="modalCerrarSesion">
+    <div class="modal">
+        <div class="icono-alerta">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </div>
+
+        <h2>¿Cerrar sesión?</h2>
+
+        <p>
+            Se cerrará la sesión actual del panel docente.
+        </p>
+
+        <div class="acciones-modal">
+            <button type="button" class="boton-secundario" id="cancelarCerrarSesion">
+                Cancelar
+            </button>
+
+            <button type="button" class="boton-principal" id="confirmarCerrarSesion">
+                Cerrar sesión
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="unidades.js"></script>
+</body>
+</html>
